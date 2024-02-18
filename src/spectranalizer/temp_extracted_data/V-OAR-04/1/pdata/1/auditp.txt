@@ -1,0 +1,21 @@
+##TITLE= Audit trail, TOPSPIN		Version 3.2
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= nmr
+$$ D:/spectra.auto/V-OAR-04/1/pdata/1/auditp.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2021-06-16 16:21:10.650 +0200>,<nmr>,<av400>,<go>,<TOPSPIN 3.2>,
+      <acquisition in progress>)
+(   2,<2021-06-16 16:21:59.010 +0200>,<nmr>,<av400>,<proc1d>,<TOPSPIN 3.2>,
+      <Start of raw data processing
+       ef LB = 1 FT_mod = 6 PKNL = 1 SI = 64K 
+       data hash MD5: 64K
+       20 0A 30 4B 04 08 3A BA 24 85 81 C9 A1 7A 54 A6>)
+(   3,<2021-06-16 16:22:00.243 +0200>,<nmr>,<av400>,<proc1d>,<TOPSPIN 3.2>,
+      <apk 
+       data hash MD5: 64K
+       C0 B6 76 C4 FF 06 D7 F8 F6 CB F3 3A 81 5C C3 E5>)
+##END=
+
+$$ hash MD5
+$$ 9D 46 0A 02 32 7E C3 3B 97 4C 04 5B 48 0E A3 E0

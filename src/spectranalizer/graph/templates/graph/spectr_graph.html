@@ -1,0 +1,86 @@
+{% extends 'graph/base.html' %}
+{% load graph_tags %}
+
+{% block content %}
+    <h1>SPECTR ANALYZER</h1>
+    {% if request.user.is_authenticated %}
+				<li class="last"> {{user.username}} | <a href="{% url 'logout' %}">Выйти</a></li>
+                {% endif %}
+                <div id="bokeh_plot">
+        {{ bokeh_script|safe }}
+    </div>
+    <div id="container" style="width:60%; height:400px;"></div>
+        
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const chart = Highcharts.chart('container', {
+                chart: {
+                    zoomType: 'x'
+                },
+                title: {
+                    text: 'Fruit Consumption'
+                },
+                xAxis: {
+                    categories: ['Apples', 'Bananas', 'Oranges']
+                },
+                yAxis: {
+                    title: {
+                        text: 'Fruit eaten'
+                    }
+                },
+                series: [{
+                    name: 'Jane',
+                    data: [1, 0, 4, 7,54,564,54564,45]
+                }, {
+                    name: 'John',
+                    data: [5, 7, 3, 7,544,5464,454564,445]
+                }]
+            });
+        });
+    </script>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p><input type="file" name="file_upload"></p>
+        <br>
+        <p><button type="submit">Отправить</button></p>
+    </form>
+
+    <ul>
+        {% get_spectrs as spectrs %}
+        {% for p in spectrs %}    
+            <li>
+                <h2>{{ p.file_name }}</h2>
+                <p>{{ p.chemical_name }}</p>
+                <button class="use-btn" data-info-id="{{ p.id }}">Использовать</button>
+            </li>    
+        {% endfor %}
+    </ul>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".use-btn").click(function() {
+                var infoId = $(this).data('info-id');
+                $(this).hide();
+                
+                // Отправка AJAX-запроса
+                $.ajax({
+                    url: '/your-ajax-endpoint/', // Замените на ваш URL-адрес для обработки запроса
+                    type: 'POST',
+                    data: {
+                        'info_id': infoId // Передача ID информации на сервер
+                    },
+                    success: function(response) {
+                        // Обработка успешного ответа сервера
+                        console.log('Request successful');
+                    },
+                    error: function(xhr, status, error) {
+                        // Обработка ошибки запроса
+                        console.error('Request failed:', status, error);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

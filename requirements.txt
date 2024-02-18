@@ -6,3 +6,4 @@ python-dotenv==0.19.0
 scipy==1.11.3
 openpyxl==3.1.2
 prettytable==3.9.0
+Django==5.0.2
