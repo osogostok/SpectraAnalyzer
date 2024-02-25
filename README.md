@@ -1,4 +1,15 @@
-# SpectraAnalyzer
+<!-- # SpectraAnalyzer -->
+
+<br />
+<div align="SpectraAnalyzer">
+  <h3 align="center">SpectraAnalyzer</h3>
+
+  <p align="center">
+    Веб-приложение для ЯИР и ИК спектров
+  </p>
+</div>
+
+
 
 __SpectraAnalyzer__ - это веб-приложение на языке Python, предназначенное для открытия и визуализации ЯМР (Ядерного Магнитного Резонанса) и ИК (Инфракрасного) спектров в химических исследованиях.
 
@@ -11,6 +22,8 @@ __SpectraAnalyzer__ - это веб-приложение на языке Python,
 * <a href="https://numpy.org/">NumPy</a>
 * <a href="https://pandas.pydata.org/">Pandas</a>
 * <a href="https://www.highcharts.com/">Highcharts</a>
+* <a href="https://www.nmrglue.com/">nmrglue</a>
+
 
 ## Установка
 
