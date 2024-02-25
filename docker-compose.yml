@@ -1,26 +1,41 @@
 version: '3'
 
 services:
-  db:
-    image: postgres:latest
-    environment:
-      POSTGRES_DB: SPECTR_ANALIZER
-      POSTGRES_USER: rivenmau
-      POSTGRES_PASSWORD: 1234
-    ports:
-      - "5432:5432"
-    volumes:
-      - db_data:/var/lib/postgresql/data
-
-  web:
+  django:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    container_name: django
+    # command: python manage.py runserver 0.0.0.0:8000
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - .:/app
+      - .:/usr/src/app/src/spectranalizer/
     ports:
-      - "8000:8000"
+      - 8000:8000
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=pgdb
+      - POSTGRES_PORT=5432
+    restart: always    
+    links:
+      - "pgdb:pgdb"
     depends_on:
-      - db
+      - pgdb
+
+
+  pgdb:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+    - POSTGRES_DB=postgres
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
+    - PGDATA=/var/lib/postgresql/data/
+    container_name: pgdb
+    volumes:
+      - pgdbdata:/var/lib/postgresql/data/
+    restart: always
 
 volumes:
-  db_data:
+  pgdbdata: null

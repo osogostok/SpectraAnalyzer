@@ -1,0 +1,210 @@
+.container_label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px; 
+  color: white;
+}
+  
+  .site-title {
+
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 2px; 
+    font-size: 40px; 
+    margin-top: 5px; 
+    color: white;
+    text-align: center; 
+  }
+  
+
+  .btn-link-logout {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    background-color: rgba(137, 131, 131, 0.453);
+    color: #333;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    padding: 10px 10px;
+    margin: 0px 20px 0px auto; /* Выравниваем по правому краю */
+    width: 150px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+
+.btn-link-logout:hover {
+    background: rgba(119, 118, 119, 0.5);
+    color: #fff;
+    box-shadow: 0 0 2em 0.5em #d1cfd4;
+}
+
+.highcharts-figure,
+.highcharts-data-table table {
+    max-width: 90%;
+    margin: 1em auto;
+    height: 80vh; 
+}
+
+.highcharts-data-table table {
+  font-family: 'Oswald', sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 90%;
+}
+
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+.highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+    padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+
+.inputfile {
+  display: none;
+}
+
+/* Оформление кнопки загрузки файла */
+.inputfile.btn-link-logout {
+  display: inline-block;
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  background-color: rgba(137, 131, 131, 0.453);
+  color: #333;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  padding: 10px 10px;
+  margin: 0px 20px 0px auto; /* Выравниваем по правому краю */
+  width: 150px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  margin-left: 20px;
+}
+
+.inputfile.btn-link-logout:hover {
+  background: rgba(119, 118, 119, 0.5);
+  color: #fff;
+  box-shadow: 0 0 2em 0.5em #d1cfd4;
+}
+
+/* Отображение нового текста на кнопке */
+.inputfile.btn-link-logout span {
+  display: inline-block;
+}
+
+/* Стили для бегунка */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 30px; /* Ширина бегунка */
+  height: 15px; /* Высота бегунка */
+  background: rgba(137, 131, 131, 0.453); /* Цвет фона бегунка */
+  outline: none; /* Убираем обводку */
+  border-radius: 5px; /* Скругление углов */
+  margin: 0px 20px 0px auto; /* Выравниваем по правому краю */
+  position: relative; /* Позиционируем относительно своего контейнера */
+}
+
+/* Перетаскиваемый "бегунок" */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px; /* Ширина бегунка */
+  height: 20px; /* Высота бегунка */
+  background: #fff; /* Цвет бегунка */
+  border-radius: 50%; /* Круглая форма */
+  cursor: pointer;
+  position: absolute; /* Позиционируем абсолютно внутри контейнера */
+  top: 50%; /* Размещаем по вертикали на середину */
+  transform: translateY(-50%); /* Смещаем на половину высоты вверх, чтобы выровнять по центру */
+  margin-left: -10px; /* Смещаем бегунок на половину своей ширины влево */
+}
+
+/* Перетаскиваемый "бегунок" при наведении */
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: rgba(119, 118, 119, 0.5); /* Цвет бегунка при наведении */
+  box-shadow: 0 0 2em 0.5em #d1cfd4; /* Тень при наведении */
+}
+
+
+
+/* Стили для кнопки и переключателя на одной линии */
+.inputfile.btn-link-logout {
+  display: inline-block;
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  background-color: rgba(137, 131, 131, 0.453);
+  color: #333;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  padding: 10px 10px;
+  margin-right: 20px; /* Отступ справа для разделения между кнопкой и переключателем */
+  width: 150px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+.toggle-switch {
+  width: 100px; /* Ширина переключателя */
+  height: 20px; /* Высота переключателя */
+  margin-top: 10px; /* Отступ сверху */
+  margin-left: 20px; /* Отступ слева для разделения между кнопкой и переключателем */
+}
+
+
+.container_list {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+.column {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: center; 
+}
+
+.spectr-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.spectr-info {
+  flex-grow: 1;
+}
+
+.spectr-actions {
+  margin-left: 10px;
+}

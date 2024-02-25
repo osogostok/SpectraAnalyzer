@@ -1,39 +1,30 @@
-console.log("Function started."); // Перемещаем вывод в консоль сюда
+// document.addEventListener('DOMContentLoaded', function () {
+//     const chart = Highcharts.chart('container', {
+//         chart: {
+//             zoomType: 'x'
+//         },
+//         title: {
+//             text: 'Fruit Consumption'
+//         },
+//         xAxis: {
+//             categories: ['Apples', 'Bananas', 'Oranges']
+//         },
+//         yAxis: {
+//             title: {
+//                 text: 'Fruit eaten'
+//             }
+//         },
+//         series: [{
+//             name: 'Jane',
+//             data: [1, 0, 4, 7,54,564,54564,45]
+//         }, {
+//             name: 'John',
+//             data: [5, 7, 3, 7,544,5464,454564,445]
+//         }]
+//     });
+// });
 
-Highcharts.chart('container', {
 
-    chart: {
-        zoomType: 'x'
-    },
-
-    title: {
-        text: 'Highcharts drawing ' + n + ' points',
-        align: 'left'
-    },
-
-    subtitle: {
-        text: 'Using the Boost module',
-        align: 'left'
-    },
-
-    accessibility: {
-        screenReaderSection: {
-            beforeChartFormat: '<{headingTagName}>{chartTitle}</{headingTagName}><div>{chartSubtitle}</div><div>{chartLongdesc}</div><div>{xAxisDescription}</div><div>{yAxisDescription}</div>'
-        }
-    },
-
-    tooltip: {
-        valueDecimals: 2
-    },
-
-    xAxis: {
-        type: 'datetime'
-    },
-
-    series: [{
-        data: data,
-        lineWidth: 0.5,
-        name: 'Hourly data points'
-    }]
-
-});
+function submitForm() {
+    document.getElementById("uploadForm").submit();
+}

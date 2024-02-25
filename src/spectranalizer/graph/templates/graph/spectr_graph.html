@@ -2,85 +2,138 @@
 {% load graph_tags %}
 
 {% block content %}
-    <h1>SPECTR ANALYZER</h1>
-    {% if request.user.is_authenticated %}
-				<li class="last"> {{user.username}} | <a href="{% url 'logout' %}">Выйти</a></li>
-                {% endif %}
-                <div id="bokeh_plot">
-        {{ bokeh_script|safe }}
-    </div>
-    <div id="container" style="width:60%; height:400px;"></div>
-        
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const chart = Highcharts.chart('container', {
-                chart: {
-                    zoomType: 'x'
-                },
-                title: {
-                    text: 'Fruit Consumption'
-                },
-                xAxis: {
-                    categories: ['Apples', 'Bananas', 'Oranges']
-                },
-                yAxis: {
-                    title: {
-                        text: 'Fruit eaten'
-                    }
-                },
-                series: [{
-                    name: 'Jane',
-                    data: [1, 0, 4, 7,54,564,54564,45]
-                }, {
-                    name: 'John',
-                    data: [5, 7, 3, 7,544,5464,454564,445]
-                }]
-            });
-        });
-    </script>
+<div class="container_label">
+    <div class="site-title">SPECTR ANALYZER</div>
+    <a href="{% url 'logout' %}" class="btn-link-logout">Выйти</a>
+</div>
 
-    <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <p><input type="file" name="file_upload"></p>
-        <br>
-        <p><button type="submit">Отправить</button></p>
-    </form>
+<script>
+    function submitForm() {
+        document.getElementById("uploadForm").submit();
+    }
+</script>
 
-    <ul>
-        {% get_spectrs as spectrs %}
-        {% for p in spectrs %}    
+<form method="POST" enctype="multipart/form-data" id="uploadForm">
+    {% csrf_token %}
+    {{ form.file }}
+    <label for="file" class="inputfile btn-link-logout">
+        <span>Загрузить файл</span>
+        <input type="file" name="file_spectrs" id="file" class="inputfile" onchange="submitForm()" />
+    </label>
+</form>
+
+{% show_spectrs request%}
+
+
+
+<div id="error-message" class="error-message">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="message">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<script>
+    function showError() {
+        const errorMessage = document.getElementById('error-message');
+        if (errorMessage.innerHTML.trim() !== '') {
+            errorMessage.classList.add('show'); 
+            setTimeout(function () {
+                errorMessage.classList.remove('show'); 
+            }, 15000);
+        }
+    }
+
+    window.onload = showError;
+</script>
+
+{% get_list_unused request.user.id as spectrs %}
+<div class="container_list">
+    <div class="column">
+        <h3>ИК-спектры</h3>
+        <ul>
+            {% for p in spectrs %}
+            {% if p.spectr.values.type_spectr == "IR" %}
             <li>
-                <h2>{{ p.file_name }}</h2>
-                <p>{{ p.chemical_name }}</p>
-                <button class="use-btn" data-info-id="{{ p.id }}">Использовать</button>
-            </li>    
-        {% endfor %}
-    </ul>
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $(".use-btn").click(function() {
-                var infoId = $(this).data('info-id');
-                $(this).hide();
-                
-                // Отправка AJAX-запроса
-                $.ajax({
-                    url: '/your-ajax-endpoint/', // Замените на ваш URL-адрес для обработки запроса
-                    type: 'POST',
-                    data: {
-                        'info_id': infoId // Передача ID информации на сервер
-                    },
-                    success: function(response) {
-                        // Обработка успешного ответа сервера
-                        console.log('Request successful');
-                    },
-                    error: function(xhr, status, error) {
-                        // Обработка ошибки запроса
-                        console.error('Request failed:', status, error);
-                    }
-                });
+                <div class="spectr-item">
+                    <div class="spectr-info">
+                        <h2>{{ p.spectr.file_name }}</h2>
+                    </div>
+                    <div class="spectr-actions">
+                        {% if p.is_publish %}
+                        <button class="action-btn" data-info-id="{{ p.id }}" data-action="remove">Убрать</button>
+                        {% else %}
+                        <button class="action-btn" data-info-id="{{ p.id }}" data-action="use">Использовать</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="column">
+        <h3>ЯМР-спектры</h3>
+        <ul>
+            {% for p in spectrs %}
+            {% if p.spectr.values.type_spectr == "NMR" %}
+            <li>
+                <div class="spectr-item">
+                    <div class="spectr-info">
+                        <h2>{{ p.spectr.file_name }}</h2>
+                    </div>
+                    <div class="spectr-actions">
+                        {% if p.is_publish %}
+                        <button class="action-btn" data-info-id="{{ p.id }}" data-action="remove">Убрать</button>
+                        {% else %}
+                        <button class="action-btn" data-info-id="{{ p.id }}" data-action="use">Использовать</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('.action-btn').click(function () {
+            var infoId = $(this).data('info-id');
+            var action = $(this).data('action');
+            var csrfToken = $('input[name=csrfmiddlewaretoken]').val(); 
+
+
+            var isPublish = (action === 'remove') ? false : true;
+
+            var requestData = {
+                csrfmiddlewaretoken: csrfToken,
+                infoId: infoId,
+                isPublish: isPublish
+            };
+
+            $.ajax({
+                url: '/update_spectr/', 
+                method: 'POST',
+                data: requestData,
+                success: function (response) {
+                    location.reload();
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.error('Произошла ошибка при выполнении запроса:', textStatus, errorThrown);
+                }
             });
         });
-    </script>
+    });
+
+</script>
+
+
+
+
+
+
 {% endblock %}

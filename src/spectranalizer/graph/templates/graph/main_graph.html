@@ -1,16 +1,16 @@
 {% extends 'graph/base.html' %}
 
 {% block content %}
-<div class="container">
+<div class="container_main">
   <div class="text-center">
     <h1>​SPECTR ANALYZER</h1>
     <h2>ПРОСМОТР ЯМР И ИК СПЕКТРОВ<h2>
   </div>
   <div>
+    <div class="button-wrapper"></div>
     <a href="{% url 'login' %}" class="btn-link">Вход</a>
     <a href="{% url 'register' %}" class="btn-link">Регистрация</a>
-
-
   </div>
+</div>
 </div>
 {% endblock %}

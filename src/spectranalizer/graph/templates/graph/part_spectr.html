@@ -1,0 +1,66 @@
+<figure class="highcharts-figure">
+    <div id="container_1" style="width: 100%; height: 80vh;"></div>
+    <p class="highcharts-description"></figure>
+
+        {% block js_stuf %}
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/boost.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var data = {{ spectrs|safe }};
+                console.log(data);
+        
+                Highcharts.chart('container_1', {
+                    chart: {
+                        zoomType: 'xy',
+                        marginLeft: 100
+                    },
+                    title: {
+                        text: "" 
+                    },
+                    legend: {
+                        align: 'right',
+                        verticalAlign: 'middle',
+                        layout: 'vertical'
+                    },
+                    accessibility: {
+                        screenReaderSection: {
+                            beforeChartFormat: '<{headingTagName}>{chartTitle}</{headingTagName}><div>{chartSubtitle}</div><div>{chartLongdesc}</div><div>{xAxisDescription}</div><div>{yAxisDescription}</div>'
+                        }
+                    },
+                    tooltip: {
+                        valueDecimals: 2
+                    },
+                    plotOptions: {
+                        series: {
+                            marker: {
+                                enabled: false 
+                            }
+                        }
+                    },
+                    xAxis: {
+                        title: { 
+                            text: ''
+                        },
+                        gridLineWidth: 1, 
+                        gridLineColor: '#e0e0e0',
+                        gridLineDashStyle: 'dot',
+                        reversed: true
+                    },
+                    yAxis: {
+                        gridLineWidth: 1, 
+                        gridLineColor: '#e0e0e0', 
+                        gridLineDashStyle: 'dot' 
+                    },
+                    series: data
+                });
+                
+            });
+        </script>
+        {% endblock %}
+        

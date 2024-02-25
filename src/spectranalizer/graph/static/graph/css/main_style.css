@@ -2,7 +2,7 @@ body, html {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'Smooch Sans', sans-serif; /* Используем новый шрифт */
+    font-family: 'Oswald', sans-serif; 
 }
 
 .background {
@@ -16,29 +16,40 @@ body, html {
     background-position: center;
     z-index: -1;
 }
-
-.container {
+.container_main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    text-align: center; /* Выравнивание по центру */
-}
+    height: 100vh;
+  }
+  
+  .container > div {
+    margin-top: 20px; 
+  }
+  
 
-h1 {
+  .container_main h1 {
     font-family: 'Oswald', sans-serif;
-    letter-spacing: 12px; /* Расстояние между буквами */
-    font-size: 60px; /* Увеличиваем размер шрифта */
-    margin-bottom: 0; /* Убираем нижний отступ для h1 */
+    letter-spacing: 12px;
+    font-size: 60px; 
+    margin-bottom: 0; 
     color: white;
+    text-align: center; 
 }
 
-h2 {
+.container_main h2 {
     font-family: 'Smooch Sans', sans-serif;
-    letter-spacing: 2px; /* Расстояние между буквами */
-    font-size: 25px; /* Увеличиваем размер шрифта */
-    margin-top: 10px; /* Задаем отступ сверху для h2 */
+    letter-spacing: 2px; 
+    font-size: 25px; 
+    margin-top: 10px; 
+    color: white;
+    text-align: center; 
+}
+
+.container_main .button-wrapper {
+    display: flex;
+    justify-content: center;
 }
 
 button {
@@ -56,6 +67,7 @@ button {
     margin-bottom: 10px;
     width: 150px;
     text-align: center;
+    color: white;
 
 }
 
@@ -77,60 +89,53 @@ button:hover {
     padding: 10px 10px;
     margin-right: 100px;
     box-shadow: 0 0 10px #fff;
-    margin-top: 50px;
+    margin-top: 100px;
+    margin: 0 auto;
+    margin-right: 20px; 
     margin-bottom: 10px;
     width: 150px;
     text-align: center;
-    text-decoration: none; /* Удаление подчеркивания */
+    text-decoration: none; 
+    color: white;
 }
 
-/* Стили при наведении на ссылку */
+
 .btn-link:hover {
     background: rgba(119, 118, 119, 0.5);
     color: #fff;
     box-shadow: 0 0 2em 0.5em #d1cfd4;
 }
   
-.highcharts-figure,
-  .highcharts-data-table table {
-      min-width: 360px;
-      max-width: 800px;
-      margin: 1em auto;
-  }
-  
-  .highcharts-data-table table {
-      font-family: Verdana, sans-serif;
-      border-collapse: collapse;
-      border: 1px solid #ebebeb;
-      margin: 10px auto;
-      text-align: center;
-      width: 100%;
-      max-width: 500px;
-  }
-  
-  .highcharts-data-table caption {
-      padding: 1em 0;
-      font-size: 1.2em;
-      color: #555;
-  }
-  
-  .highcharts-data-table th {
-      font-weight: 600;
-      padding: 0.5em;
-  }
-  
-  .highcharts-data-table td,
-  .highcharts-data-table th,
-  .highcharts-data-table caption {
-      padding: 0.5em;
-  }
-  
-  .highcharts-data-table thead tr,
-  .highcharts-data-table tr:nth-child(even) {
-      background: #f8f8f8;
-  }
-  
-  .highcharts-data-table tr:hover {
-      background: #f1f7ff;
-  }
-  
+
+.error-message {
+    position: fixed;
+    bottom: 20px;
+    right: -300px;
+    background-color: #978483;
+    color: white;
+    padding: 15px;
+    z-index: 1000;
+    transition: right 0.5s ease-in-out;
+}
+
+.error-message.show {
+    right: 20px; 
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+
+.column {
+    float: left;
+    width: 50%; 
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
