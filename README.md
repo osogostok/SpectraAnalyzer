@@ -1,15 +1,4 @@
-<!-- # SpectraAnalyzer -->
-
-<br />
-<div align="SpectraAnalyzer">
-  <h3 align="center">SpectraAnalyzer</h3>
-
-  <p align="center">
-    Веб-приложение для ЯИР и ИК спектров
-  </p>
-</div>
-
-
+# SpectraAnalyzer
 
 __SpectraAnalyzer__ - это веб-приложение на языке Python, предназначенное для открытия и визуализации ЯМР (Ядерного Магнитного Резонанса) и ИК (Инфракрасного) спектров в химических исследованиях.
 
